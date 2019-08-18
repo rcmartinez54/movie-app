@@ -4,19 +4,30 @@
 
 'use strict';
 
-function enterSite() {
-    console.log('here');
-    $('.js-enter-btn').on('click', function(event) {
-        console.log('hello');
+// function enterSite() {
+//     $('.js-enter-btn').on('click', function(event) {
+//         event.preventDefault();
+//         $('.main-contain').html(
+//             `<form id="js-form">
+//                 <label for="search-movie">Enter Movie Title</label>
+//                 <input type="text" name="search-movie" id="js-search-movie" placeholder="Enter Movie Title">
+//                 <button type="submit" class="submit-btn">Submit</button>
+//             </form>`
+//         );
+//     });
+// }
+
+function submitForm() {
+    $('#js-form').submit(function(event) {
         event.preventDefault();
-        $('.main-contain').html(
-            `<form id="js-form">
-                <label for="search-movie">Enter Movie Title</label>
-                <input type="text" name="search-movie" id="js-search-movie" placeholder="Enter Movie Title">
-                <input type="submit" value="Submit">
-            </form>`
-        );
+        let inputVal = $('#js-search-movie').val();
+        console.log(inputVal);
     });
 }
 
-$(enterSite);
+function handleFunctions() {
+    // enterSite();
+    submitForm();
+}
+
+$(handleFunctions);
