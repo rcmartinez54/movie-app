@@ -29,7 +29,8 @@ body {
     color: white;
 }
 
-.response-container {
+.response-container,
+.popular-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,8 +38,18 @@ body {
     line-height: 1.4;
 }
 
-.response-container p {
+.response-container p,
+.popular-container p {
     padding: 0 20px;
     text-align: justify;
+}
+
+.response-container {
+    margin-bottom: 40px;
+}
+
+.pop-header {
+    background: white;
+    color: black;
 }
 
