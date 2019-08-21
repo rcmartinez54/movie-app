@@ -11,6 +11,12 @@ body {
     color: white;
 }
 
+.main-contain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #js-form {
     display: flex;
     flex-direction: column;
@@ -21,12 +27,25 @@ body {
     text-align: center;
 }
 
+.hidden {
+    display: none;
+}
+
+#enter,
 .submit-btn {
     padding: 5px 15px;
     margin-top: 20px;
     border: 2px solid red;
     background: transparent;
     color: white;
+}
+
+#enter:hover,
+.submit-btn:hover {
+    background: red;
+    border: 2px solid white;
+    transition: all 1s;
+    cursor: pointer;
 }
 
 .response-container,
