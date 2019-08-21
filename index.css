@@ -3,7 +3,7 @@
 }
 
 body {
-    background: url('img/app-background.jpeg') no-repeat;
+    background: url('img/app-background.jpg') no-repeat;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -27,5 +27,18 @@ body {
     border: 2px solid red;
     background: transparent;
     color: white;
+}
+
+.response-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.4;
+}
+
+.response-container p {
+    padding: 0 20px;
+    text-align: justify;
 }
 
