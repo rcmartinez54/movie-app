@@ -2,6 +2,13 @@
 
 const key = '05f3d0d627b6f6d55cb005ffb7a0a0c1';
 
+function enterSite() {
+    $('#enter').on('click', function() {
+        $('.main-contain').addClass('hidden');
+        $('.form').removeClass('hidden');
+    });
+}
+
 function callMovieAPI(inputVal) {
     fetch (`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${inputVal}`)
     .then(response => response.json())
@@ -46,7 +53,7 @@ function displayPopularMovies(popResponse) {
 }
 
 function handleFunctions() {
-    // enterSite();
+    enterSite();
     submitForm();
 }
 
