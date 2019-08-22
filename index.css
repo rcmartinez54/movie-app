@@ -67,6 +67,18 @@ body {
     margin-bottom: 40px;
 }
 
+.popular-movies-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popular-movies-btn {
+    border: 2px solid red;
+    background: transparent;
+    color: white;
+}
+
 .pop-header {
     background: white;
     color: black;
