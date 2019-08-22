@@ -28,6 +28,17 @@ function submitForm() {
         event.preventDefault();
         let inputVal = $('#js-search-movie').val();
         callMovieAPI(inputVal);
+        // getPopularMovies();
+        $('.form').addClass('hidden');
+        $('.popular-movies-btn').delay(1000).queue(function() {
+            $('.popular-movies-btn').removeClass('hidden'); 
+        });
+    });
+}
+
+function popularBtn() {
+    $('.popular-movies-btn').on('click', function() {
+        console.log('im here');
         getPopularMovies();
     });
 }
@@ -43,6 +54,9 @@ function displayResults(newResponse) {
 
 function displayPopularMovies(popResponse) {
     console.log(popResponse);
+    $('.popular-container').html(`
+        <h2>Here Are Some Popular Movies Based On User Voting</h2>
+    `)
     for (let i = 0; i < popResponse.results.length; i++) {
         $('.popular-container').append(`
             <h2>${popResponse.results[i].title}</h2>
@@ -55,6 +69,7 @@ function displayPopularMovies(popResponse) {
 function handleFunctions() {
     enterSite();
     submitForm();
+    popularBtn();
 }
 
 $(handleFunctions);
