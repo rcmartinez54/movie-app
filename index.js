@@ -16,17 +16,16 @@ function callMovieAPI(inputVal) {
     .then(response => response.json())
     .then(newResponse => {
         movieId = newResponse.results[0].id;
-
         return fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${key}&language=en-US`)
+        .then(response => response.json())
+        .then(responseObject => {
+            let sourceKey = responseObject.results[0].key;
+            let videoUrl = 'https://www.youtube.com/watch?v';
+            let trailer = `${videoUrl}=${sourceKey}`;
+            console.log(trailer);
+        })
     })
-    .then(response => response.json())
-    .then(responseObject => {
-        let sourceKey = responseObject.results[0].key;
-        let videoUrl = 'https://www.youtube.com/watch?v';
-        let trailer = `${videoUrl}=${sourceKey}`;
-        console.log(trailer);
-    })
-    .then(responseObject => displayResults(responseObject)
+    .then(newResponse => displayResults(newResponse)
     .catch(error => console.log(error)))
 }
 
@@ -68,11 +67,11 @@ function popularBtn() {
     });
 }
 
-function displayResults(responseObject) {
+function displayResults(newResponse) {
     $('.response-container').empty();
     $('.response-container').append(`
-        <video controls src="${responseObject.trailer}" width="600">
-            Sorry, your browser does not support embedded videos, but don't fret, you can <a href="${trailer}">click here</a> to watch it!
+        <video controls src="#" width="600">
+            Sorry, your browser does not support embedded videos, but don't fret, you can <a href="#">click here</a> to watch it!
         </video>
         <h2>${newResponse.results[0].title}</h2>
         <img src="http://image.tmdb.org/t/p/w300/${newResponse.results[0].poster_path}"/>
