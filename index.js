@@ -32,18 +32,6 @@ function callMovieAPI(inputVal) {
 
 }
 
-// function getMovieTrailer(movieId) {
-//     console.log(movieId);
-//     fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${key}&language=en-US`)
-//     .then(response => response.json())
-//     .then(responseObject => {
-//         let sourceKey = responseObject.results[0].key;
-//         let videoUrl = 'https://www.youtube.com/watch?v';
-//         let trailer = `${videoUrl}=${sourceKey}`;
-//         return trailer;
-//     })
-// }
-
 function getPopularMovies() {
     fetch('https://api.themoviedb.org/3/movie/popular?api_key=05f3d0d627b6f6d55cb015ffb7a0a0c1&language=en-US&page=1')
     .then(response => response.json())
