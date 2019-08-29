@@ -21,8 +21,10 @@ function callMovieAPI(inputVal) {
         .then(response => response.json())
         .then(responseObject => {
             let sourceKey = responseObject.results[0].key;
+            // let videoUrl = 'https://www.youtube.com/watch?v';
+            // trailer = `${videoUrl}=${sourceKey}`;
             let videoUrl = 'https://www.youtube.com/embed/';
-            trailer = `${videoUrl}=${sourceKey}`;
+            trailer = `${videoUrl}${sourceKey}?rel=0&html5=1`;
             displayResults(newResponse, trailer);
         })
         .catch(error => console.log(error))
@@ -71,11 +73,14 @@ function popularBtn() {
 function displayResults(newResponse, trailer) {
     $('.response-container').empty();
     $('.response-container').append(`
-        
-        <iframe width='510' height='200' src="${trailer}" frameborder="0" allowfullscreen></iframe>
-        <h2>${newResponse.results[0].title}</h2>
-        <img src="http://image.tmdb.org/t/p/w300/${newResponse.results[0].poster_path}"/>
-        <p>${newResponse.results[0].overview}</p>      
+        <div class="movie-title">
+            <h2>${newResponse.results[0].title}</h2>
+        </div>
+        <div class="poster-and-summary">
+            <img src="http://image.tmdb.org/t/p/w300/${newResponse.results[0].poster_path}"/>
+            <p>${newResponse.results[0].overview}</p>
+        </div>
+        <iframe width="510" height="280" src="${trailer}" frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
     `)
 }
 
