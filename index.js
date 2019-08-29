@@ -2,6 +2,7 @@
 
 const key = '05f3d0d627b6f6d55cb015ffb7a0a0c1';
 let movieId;
+let trailer;
 
 function enterSite() {
     $('#enter').on('click', function() {
@@ -16,17 +17,17 @@ function callMovieAPI(inputVal) {
     .then(response => response.json())
     .then(newResponse => {
         movieId = newResponse.results[0].id;
-        return fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${key}&language=en-US`)
+        fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${key}&language=en-US`)
         .then(response => response.json())
         .then(responseObject => {
             let sourceKey = responseObject.results[0].key;
-            let videoUrl = 'https://www.youtube.com/watch?v';
-            let trailer = `${videoUrl}=${sourceKey}`;
-            console.log(trailer);
+            let videoUrl = 'https://www.youtube.com/embed/';
+            trailer = `${videoUrl}=${sourceKey}`;
+            displayResults(newResponse, trailer);
         })
+        .catch(error => console.log(error))
     })
-    .then(newResponse => displayResults(newResponse)
-    .catch(error => console.log(error)))
+
 }
 
 // function getMovieTrailer(movieId) {
@@ -67,12 +68,11 @@ function popularBtn() {
     });
 }
 
-function displayResults(newResponse) {
+function displayResults(newResponse, trailer) {
     $('.response-container').empty();
     $('.response-container').append(`
-        <video controls src="#" width="600">
-            Sorry, your browser does not support embedded videos, but don't fret, you can <a href="#">click here</a> to watch it!
-        </video>
+        
+        <iframe width='510' height='200' src="${trailer}" frameborder="0" allowfullscreen></iframe>
         <h2>${newResponse.results[0].title}</h2>
         <img src="http://image.tmdb.org/t/p/w300/${newResponse.results[0].poster_path}"/>
         <p>${newResponse.results[0].overview}</p>      
