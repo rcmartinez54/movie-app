@@ -11,6 +11,11 @@ body {
     color: white;
 }
 
+#header,
+.movie-title {
+    font-family: 'Cinzel', serif;
+}
+
 .main-contain {
     display: flex;
     justify-content: center;
@@ -67,9 +72,41 @@ body {
     /* margin-bottom: 40px; */
 }
 
+.poster-and-summary-container {
+    /* display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; */
+}
+
 .poster-and-summary {
     text-align: center;
+    font-family: 'Montserrat', sans-serif;
 }
+
+.poster {
+    text-align: center;
+}
+
+.poster img {
+    border: 1px solid #000;
+    box-shadow: 2px 2px 4px #000;
+}
+
+.cast-list {
+    padding: 0;
+}
+
+.cast {
+    list-style: none;
+    /* background: rgba(255,255,255, 0.5); */
+    padding: 10px 0;
+}
+
+/* .cast:nth-child(2n+2) {
+    background: rgba(255,255,255, 0.7);
+} */
+
+
 
 .movie-trailer iframe {
     width: 360px;
@@ -83,10 +120,17 @@ body {
 }
 
 .popular-movies-btn {
-    border: 2px solid red;
-    background: transparent;
+    border: 2px solid white;
+    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.4) 50%, red);
     color: white;
     padding: 15px 20px;
+}
+
+.popular-movies-btn:hover {
+    border: 2px solid red;
+    background: linear-gradient(to bottom, blue, red);
+    cursor: pointer;
+    transition: all 6s;
 }
 
 .pop-header {
@@ -94,3 +138,43 @@ body {
     color: black;
 }
 
+@media screen and (min-width: 600px) {
+    .poster-and-summary-container {
+        display: flex;
+        padding: 0 15px;
+        margin-bottom: 40px;
+    }
+
+    .poster-and-summary p {
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .poster-and-summary-container ul {
+        padding: 0;
+        font-size: 12px;
+    }
+
+    .poster-and-summary-container .cast {
+        text-align: left;
+        padding: 0 20px;
+    }
+
+    .movie-trailer {
+        width: 100%;
+        text-align: center;
+    }
+
+    .movie-trailer iframe {
+        width: 100%;
+        height: 330px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .poster-and-summary {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
