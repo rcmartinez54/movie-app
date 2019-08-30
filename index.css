@@ -64,19 +64,29 @@ body {
 }
 
 .response-container {
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
+}
+
+.poster-and-summary {
+    text-align: center;
+}
+
+.movie-trailer iframe {
+    width: 360px;
 }
 
 .popular-movies-btn-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 40px;
 }
 
 .popular-movies-btn {
     border: 2px solid red;
     background: transparent;
     color: white;
+    padding: 15px 20px;
 }
 
 .pop-header {
