@@ -53,13 +53,24 @@ function submitForm() {
         $('.popular-movies-btn').delay(1000).queue(function() {
             $('.popular-movies-btn').removeClass('hidden'); 
         });
+        $('.new-search').delay(1000).queue(function() {
+            $('.new-search').removeClass('hidden');
+        });
     });
 }
 
 function popularBtn() {
     $('.popular-movies-btn').on('click', function() {
-        console.log('im here');
         getPopularMovies();
+    });
+}
+
+function newSearch() {
+    $('.new-search').on('click', function(){
+        $('.response-container').empty();
+        $('.form').removeClass('hidden');
+        $('.popular-movies-btn').addClass('hidden');
+        $('.new-search').addClass('hidden');
     });
 }
 
@@ -123,6 +134,7 @@ function handleFunctions() {
     enterSite();
     submitForm();
     popularBtn();
+    newSearch();
 }
 
 $(handleFunctions);
