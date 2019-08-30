@@ -68,7 +68,9 @@ function displayResults(newResponse, trailer) {
             <img src="http://image.tmdb.org/t/p/w300/${newResponse.results[0].poster_path}"/>
             <p>${newResponse.results[0].overview}</p>
         </div>
-        <iframe width="510" height="280" src="${trailer}" frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
+        <div class="movie-trailer">
+            <iframe width="510" height="280" src="${trailer}" frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
+        </div>
     `)
 }
 
