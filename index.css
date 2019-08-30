@@ -177,4 +177,9 @@ body {
         flex-direction: column;
         justify-content: space-between;
     }
+
+    .movie-trailer iframe {
+        width: 75%;
+        height: 450px;
+    }
 }
