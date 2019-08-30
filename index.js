@@ -25,7 +25,12 @@ function callMovieAPI(inputVal) {
             // trailer = `${videoUrl}=${sourceKey}`;
             let videoUrl = 'https://www.youtube.com/embed/';
             trailer = `${videoUrl}${sourceKey}?rel=0&html5=1`;
-            displayResults(newResponse, trailer);
+            fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=05f3d0d627b6f6d55cb015ffb7a0a0c1`)
+            .then(response => response.json())
+            .then(creditResponse => {
+                console.log(creditResponse);
+                displayResults(newResponse, creditResponse, trailer);
+            })
         })
         .catch(error => console.log(error))
     })
@@ -58,20 +63,35 @@ function popularBtn() {
     });
 }
 
-function displayResults(newResponse, trailer) {
+function displayResults(newResponse, creditResponse, trailer) {
     $('.response-container').empty();
     $('.response-container').append(`
         <div class="movie-title">
             <h2>${newResponse.results[0].title}</h2>
         </div>
-        <div class="poster-and-summary">
-            <img src="http://image.tmdb.org/t/p/w300/${newResponse.results[0].poster_path}"/>
-            <p>${newResponse.results[0].overview}</p>
+        <div class="poster-and-summary-container">
+            <div class="poster">
+                <img src="http://image.tmdb.org/t/p/w300/${newResponse.results[0].poster_path}"/>
+            </div>
+            <div class="poster-and-summary">
+                <p>${newResponse.results[0].overview}</p>
+                <ul class="cast-list"></ul>
+            </div>
         </div>
+        
         <div class="movie-trailer">
             <iframe width="510" height="280" src="${trailer}" frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
         </div>
+        
     `)
+    for (let i = 0; i < creditResponse.cast.length; i++) {
+        if(i <= 4) {
+            $('.response-container .cast-list').append(`
+                <li class="cast">${creditResponse.cast[i].name} as ${creditResponse.cast[i].character}</li>
+            `)
+        }
+        
+    }
 }
 
 function displayPopularMovies(popResponse) {
@@ -80,11 +100,22 @@ function displayPopularMovies(popResponse) {
         <h2>Here Are Some Popular Movies Based On User Voting</h2>
     `)
     for (let i = 0; i < popResponse.results.length; i++) {
-        $('.popular-container').append(`
-            <h2>${popResponse.results[i].title}</h2>
-            <p>${popResponse.results[i].overview}</p>
-            <img src="http://image.tmdb.org/t/p/w300/${popResponse.results[i].poster_path}"/>
-        `)
+        if(i <= 4) {
+            $('.popular-container').append(`
+            <div class="movie-title">
+                <h2>${popResponse.results[i].title}</h2>
+            </div>
+            <div class="poster-and-summary-container">
+                <div class="poster">
+                    <img src="http://image.tmdb.org/t/p/w300/${popResponse.results[i].poster_path}"/>
+                </div>
+                <div class="poster-and-summary">
+                    <p>${popResponse.results[i].overview}</p>
+                </div>
+            </div>
+                
+            `)
+        }
     };
 }
 
