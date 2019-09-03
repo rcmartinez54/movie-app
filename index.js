@@ -49,7 +49,7 @@ function submitForm() {
         event.preventDefault();
         let inputVal = $('#js-search-movie').val();
         callMovieAPI(inputVal);
-        $('.form').addClass('hidden');
+        $('#enter-site').addClass('hidden');
         $('.popular-movies-btn').delay(1000).queue(function() {
             $('.popular-movies-btn').removeClass('hidden'); 
         });
@@ -68,7 +68,7 @@ function popularBtn() {
 function newSearch() {
     $('.new-search').on('click', function(){
         $('.response-container').empty();
-        $('.form').removeClass('hidden');
+        $('#enter-site').removeClass('hidden');
         $('.popular-movies-btn').addClass('hidden');
         $('.new-search').addClass('hidden');
     });
