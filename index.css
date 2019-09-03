@@ -16,8 +16,18 @@ body {
     font-family: 'Cinzel', serif;
 }
 
-#enter-site {
+#header {
+    width: 100%;
+    text-align: center;
+    background: #93291E;
+}
 
+.enter-site-section-container {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-contain {
@@ -114,16 +124,18 @@ body {
 .movie-trailer iframe {
     width: 315px;
     height: 200px;
+    box-shadow: 5px 5px 5px #000;
 }
 
 .popular-movies-btn-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     padding: 40px;
 }
 
-.popular-movies-btn {
+.popular-movies-btn,
+.new-search {
     border: 2px solid white;
     background: linear-gradient(to bottom, rgba(255, 0, 0, 0.4) 50%, red);
     color: white;
@@ -172,6 +184,7 @@ body {
     .movie-trailer iframe {
         width: 95%;
         height: 330px;
+        box-shadow: 5px 5px 5px #000;
     }
 }
 
@@ -185,6 +198,7 @@ body {
     .movie-trailer iframe {
         width: 75%;
         height: 450px;
+        box-shadow: 5px 5px 5px #000;
     }
 
     body {
