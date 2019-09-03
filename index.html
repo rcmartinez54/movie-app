@@ -14,16 +14,19 @@
         <main role="main" id="main" class="main">
 
             <section id="enter-site">
-                <div class="main-contain">
-                    <button type="submit" id="enter" class="js-enter-btn">ENTER APP</button>
+                <div class="enter-site-section-container">
+                    <div class="main-contain">
+                        <button type="submit" id="enter" class="js-enter-btn">ENTER APP</button>
+                    </div>
+                    <div class="form hidden">
+                        <form id="js-form">
+                            <!-- <label for="search-movie">Enter Movie Title</label> -->
+                            <input type="text" name="search-movie" id="js-search-movie" placeholder="Enter Movie Title" required>
+                            <button type="submit" class="submit-btn">Submit</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="form hidden">
-                    <form id="js-form">
-                        <!-- <label for="search-movie">Enter Movie Title</label> -->
-                        <input type="text" name="search-movie" id="js-search-movie" placeholder="Enter Movie Title" required>
-                        <button type="submit" class="submit-btn">Submit</button>
-                    </form>
-                </div>
+                
             </section>
             
             <section id="payload">
