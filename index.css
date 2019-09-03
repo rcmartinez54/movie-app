@@ -204,7 +204,7 @@ body {
 @media screen and (min-width: 1000px) {
     .response-container,
     .popular-container {
-        width: 60%;
+        width: 85%;
         margin: auto;
     }
 
