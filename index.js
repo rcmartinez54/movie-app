@@ -62,6 +62,7 @@ function submitForm() {
 function popularBtn() {
     $('.popular-movies-btn').on('click', function() {
         getPopularMovies();
+        
     });
 }
 
@@ -86,6 +87,7 @@ function displayResults(newResponse, creditResponse, trailer) {
             </div>
             <div class="poster-and-summary">
                 <p>${newResponse.results[0].overview}</p>
+                <h3>Cast</h3>
                 <ul class="cast-list"></ul>
             </div>
         </div>
@@ -114,7 +116,7 @@ function displayPopularMovies(popResponse) {
         if(i <= 4) {
             $('.popular-container').append(`
             <div class="movie-title">
-                <h2>${popResponse.results[i].title}</h2>
+                <h3>${popResponse.results[i].title}</h3>
             </div>
             <div class="poster-and-summary-container">
                 <div class="poster">
@@ -128,6 +130,7 @@ function displayPopularMovies(popResponse) {
             `)
         }
     };
+    $('.popular-container').animate({scrollTop: 0}, 'slow');
 }
 
 function handleFunctions() {
