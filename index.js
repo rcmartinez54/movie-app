@@ -2,6 +2,7 @@
 
 const key = '05f3d0d627b6f6d55cb015ffb7a0a0c1';
 let movieId;
+let popularId;
 let trailer;
 
 function enterSite() {
@@ -21,14 +22,11 @@ function callMovieAPI(inputVal) {
         .then(response => response.json())
         .then(responseObject => {
             let sourceKey = responseObject.results[0].key;
-            // let videoUrl = 'https://www.youtube.com/watch?v';
-            // trailer = `${videoUrl}=${sourceKey}`;
             let videoUrl = 'https://www.youtube.com/embed/';
             trailer = `${videoUrl}${sourceKey}?rel=0&html5=1`;
             fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=05f3d0d627b6f6d55cb015ffb7a0a0c1`)
             .then(response => response.json())
             .then(creditResponse => {
-                console.log(creditResponse);
                 displayResults(newResponse, creditResponse, trailer);
             })
         })
@@ -40,7 +38,16 @@ function callMovieAPI(inputVal) {
 function getPopularMovies() {
     fetch('https://api.themoviedb.org/3/movie/popular?api_key=05f3d0d627b6f6d55cb015ffb7a0a0c1&language=en-US&page=1')
     .then(response => response.json())
-    .then(popResponse => displayPopularMovies(popResponse))
+    .then(popResponse => {
+        popularId = popResponse.results[0].id;
+        console.log(popularId);
+        fetch(`https://api.themoviedb.org/3/movie/${popularId}/credits?api_key=05f3d0d627b6f6d55cb015ffb7a0a0c1`)
+        .then(response => response.json())
+        .then(popCredits => {
+            console.log(popCredits);
+            displayPopularMovies(popResponse, popCredits);
+        })
+    })
     .catch(error => console.log(error))
 }
 
@@ -50,65 +57,70 @@ function submitForm() {
         let inputVal = $('#js-search-movie').val();
         callMovieAPI(inputVal);
         $('#enter-site').addClass('hidden');
-        $('.popular-movies-btn').delay(1000).queue(function() {
-            $('.popular-movies-btn').removeClass('hidden'); 
-        });
-        $('.new-search').delay(1000).queue(function() {
-            $('.new-search').removeClass('hidden');
-        });
+        setTimeout(function() {
+            $('.popular-movies-btn, .new-search').removeClass('hidden');
+        }, 1800);
     });
 }
+
+// function formValidator(inputVal) {
+//     if (inputVal !== movieId) {
+//         $('#js-form').append(`
+//             <p>Could not find movie, please enter a valid movie title</p>
+//         `)
+//     }
+//     console.log('here');
+// }
 
 function popularBtn() {
     $('.popular-movies-btn').on('click', function() {
         getPopularMovies();
-        
     });
 }
 
 function newSearch() {
-    $('.new-search').on('click', function(){
-        $('.response-container').empty();
+    $('.new-search').on('click', function() {
+        $('.response-container, .popular-container').empty();
         $('#enter-site').removeClass('hidden');
-        $('.popular-movies-btn').addClass('hidden');
-        $('.new-search').addClass('hidden');
+        $('.popular-movies-btn, .new-search').addClass('hidden');
+        $('#js-search-movie').val('');
     });
 }
 
 function displayResults(newResponse, creditResponse, trailer) {
     $('.response-container').empty();
-    $('.response-container').append(`
-        <div class="movie-title">
-            <h2>${newResponse.results[0].title}</h2>
-        </div>
-        <div class="poster-and-summary-container">
-            <div class="poster">
-                <img src="http://image.tmdb.org/t/p/w300/${newResponse.results[0].poster_path}"/>
+    setTimeout(function() {
+        $('.response-container').hide().append(`
+            <div class="movie-title">
+                <h2>${newResponse.results[0].title}</h2>
             </div>
-            <div class="poster-and-summary">
-                <p>${newResponse.results[0].overview}</p>
-                <h3>Cast</h3>
-                <ul class="cast-list"></ul>
+            <div class="poster-and-summary-container">
+                <div class="poster">
+                    <img src="http://image.tmdb.org/t/p/w300/${newResponse.results[0].poster_path}"/>
+                </div>
+                <div class="poster-and-summary">
+                    <p>${newResponse.results[0].overview}</p>
+                    <ul class="cast-list"></ul>
+                </div>
             </div>
-        </div>
-        
-        <div class="movie-trailer">
-            <iframe width="510" height="280" src="${trailer}" frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
-        </div>
-        
-    `)
-    for (let i = 0; i < creditResponse.cast.length; i++) {
-        if(i <= 4) {
-            $('.response-container .cast-list').append(`
-                <li class="cast">${creditResponse.cast[i].name} as ${creditResponse.cast[i].character}</li>
-            `)
+            
+            <div class="movie-trailer">
+                <iframe width="510" height="280" src="${trailer}" frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
+            </div>
+            
+        `).fadeIn(1600);
+        for (let i = 0; i < creditResponse.cast.length; i++) {
+            if(i <= 4) {
+                $('.cast-list').hide().append(`
+                    <li class="cast">${creditResponse.cast[i].name} as ${creditResponse.cast[i].character}</li>
+                `).fadeIn(1600);
+            }
+            
         }
-        
-    }
+    }, 1000);
 }
 
-function displayPopularMovies(popResponse) {
-    console.log(popResponse);
+function displayPopularMovies(popResponse, popCredits) {
     $('.popular-container').html(`
         <h2>Here Are Some Popular Movies Based On User Voting</h2>
     `)
@@ -124,18 +136,26 @@ function displayPopularMovies(popResponse) {
                 </div>
                 <div class="poster-and-summary">
                     <p>${popResponse.results[i].overview}</p>
+                    <ul class="pop-cast-list"></ul>
                 </div>
-            </div>
-                
+            </div>   
             `)
         }
     };
-    $('.popular-container').animate({scrollTop: 0}, 'slow');
+    for (let i = 0; i < popCredits.cast.length; i++) {
+        if (i <= 4) {
+            $('.pop-cast-list').append(`
+                <li class="pop-cast">${popCredits.cast[i].name} as ${popCredits.cast[i].character}</li>
+            `)
+        }
+    }
+    // $('.popular-container').animate({scrollTop: 0}, 'slow');
 }
 
 function handleFunctions() {
     enterSite();
     submitForm();
+    // formValidator();
     popularBtn();
     newSearch();
 }
