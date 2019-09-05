@@ -39,12 +39,12 @@ function getPopularMovies() {
     fetch('https://api.themoviedb.org/3/movie/popular?api_key=05f3d0d627b6f6d55cb015ffb7a0a0c1&language=en-US&page=1')
     .then(response => response.json())
     .then(popResponse => {
+        console.log(popResponse);
         popularId = popResponse.results[0].id;
         console.log(popularId);
         fetch(`https://api.themoviedb.org/3/movie/${popularId}/credits?api_key=05f3d0d627b6f6d55cb015ffb7a0a0c1`)
         .then(response => response.json())
         .then(popCredits => {
-            console.log(popCredits);
             displayPopularMovies(popResponse, popCredits);
         })
     })
@@ -117,38 +117,47 @@ function displayResults(newResponse, creditResponse, trailer) {
             }
             
         }
+        $('#footer').removeClass('hidden').fadeIn(500);
     }, 1000);
+    
 }
 
 function displayPopularMovies(popResponse, popCredits) {
-    $('.popular-container').html(`
-        <h2>Here Are Some Popular Movies Based On User Voting</h2>
-    `)
+    setTimeout(function() {
+        $('.popular-container').html(`
+            <h2>Here Are Some Popular Movies Based On User Voting</h2>
+        `)
+    }, 1000);
+    
     for (let i = 0; i < popResponse.results.length; i++) {
         if(i <= 4) {
-            $('.popular-container').append(`
-            <div class="movie-title">
-                <h3>${popResponse.results[i].title}</h3>
-            </div>
-            <div class="poster-and-summary-container">
-                <div class="poster">
-                    <img src="http://image.tmdb.org/t/p/w300/${popResponse.results[i].poster_path}"/>
-                </div>
-                <div class="poster-and-summary">
-                    <p>${popResponse.results[i].overview}</p>
-                    <ul class="pop-cast-list"></ul>
-                </div>
-            </div>   
-            `)
+            setTimeout(function() {
+                $('.popular-container').append(`
+                    <div class="movie-title">
+                        <h3>${popResponse.results[i].title}</h3>
+                    </div>
+                    <div class="poster-and-summary-container">
+                        <div class="poster">
+                            <img src="http://image.tmdb.org/t/p/w300/${popResponse.results[i].poster_path}"/>
+                        </div>
+                        <div class="poster-and-summary">
+                            <p>${popResponse.results[i].overview}</p>
+                            <ul class="pop-cast-list"></ul>
+                        </div>
+                    </div>   
+                `)
+            }, 1000);
+            
+        }
+        for (let i = 0; i < popCredits.cast.length; i++) {
+            if (i <= 4) {
+                $('.pop-cast-list').append(`
+                    <li class="pop-cast">${popCredits.cast[i].name} as ${popCredits.cast[i].character}</li>
+                `)
+            }
         }
     };
-    for (let i = 0; i < popCredits.cast.length; i++) {
-        if (i <= 4) {
-            $('.pop-cast-list').append(`
-                <li class="pop-cast">${popCredits.cast[i].name} as ${popCredits.cast[i].character}</li>
-            `)
-        }
-    }
+    
     // $('.popular-container').animate({scrollTop: 0}, 'slow');
 }
 
