@@ -63,8 +63,8 @@ function submitForm() {
     });
 }
 
-// function formValidator(inputVal) {
-//     if (inputVal !== movieId) {
+// function formValidator() {
+//     if ($('#js-search-movie') !== ) {
 //         $('#js-form').append(`
 //             <p>Could not find movie, please enter a valid movie title</p>
 //         `)
@@ -126,12 +126,12 @@ function displayPopularMovies(popResponse, popCredits) {
     setTimeout(function() {
         $('.popular-container').html(`
             <h2>Here Are Some Popular Movies Based On User Voting</h2>
-        `)
-    }, 1000);
+        `).fadeIn(1600);
     
-    for (let i = 0; i < popResponse.results.length; i++) {
-        if(i <= 4) {
-            setTimeout(function() {
+        for (let i = 0; i < popResponse.results.length; i++) {
+
+            if(i <= 4) {
+                
                 $('.popular-container').append(`
                     <div class="movie-title">
                         <h3>${popResponse.results[i].title}</h3>
@@ -146,25 +146,23 @@ function displayPopularMovies(popResponse, popCredits) {
                         </div>
                     </div>   
                 `)
-            }, 1000);
-            
-        }
-        for (let i = 0; i < popCredits.cast.length; i++) {
-            if (i <= 4) {
-                $('.pop-cast-list').append(`
-                    <li class="pop-cast">${popCredits.cast[i].name} as ${popCredits.cast[i].character}</li>
-                `)
+                   
             }
-        }
-    };
-    
+            // for (let i = 0; i < popCredits.cast.length; i++) {
+            //     if (i <= 4) {
+            //         $('.pop-cast-list').append(`
+            //             <li class="pop-cast">${popCredits.cast[i].name} as ${popCredits.cast[i].character}</li>
+            //         `)
+            //     }
+            // }
+        };
+    }, 1000);
     // $('.popular-container').animate({scrollTop: 0}, 'slow');
 }
 
 function handleFunctions() {
     enterSite();
     submitForm();
-    // formValidator();
     popularBtn();
     newSearch();
 }
