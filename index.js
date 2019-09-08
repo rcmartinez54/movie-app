@@ -39,9 +39,7 @@ function getPopularMovies() {
     fetch('https://api.themoviedb.org/3/movie/popular?api_key=05f3d0d627b6f6d55cb015ffb7a0a0c1&language=en-US&page=1')
     .then(response => response.json())
     .then(popResponse => {
-        console.log(popResponse);
         popularId = popResponse.results[0].id;
-        console.log(popularId);
         fetch(`https://api.themoviedb.org/3/movie/${popularId}/credits?api_key=05f3d0d627b6f6d55cb015ffb7a0a0c1`)
         .then(response => response.json())
         .then(popCredits => {
@@ -62,15 +60,6 @@ function submitForm() {
         }, 1800);
     });
 }
-
-// function formValidator() {
-//     if ($('#js-search-movie') !== ) {
-//         $('#js-form').append(`
-//             <p>Could not find movie, please enter a valid movie title</p>
-//         `)
-//     }
-//     console.log('here');
-// }
 
 function popularBtn() {
     $('.popular-movies-btn').on('click', function() {
@@ -109,6 +98,7 @@ function displayResults(newResponse, creditResponse, trailer) {
             </div>
             
         `).fadeIn(1600);
+
         for (let i = 0; i < creditResponse.cast.length; i++) {
             if(i <= 4) {
                 $('.cast-list').hide().append(`
@@ -117,7 +107,6 @@ function displayResults(newResponse, creditResponse, trailer) {
             }
             
         }
-        $('#footer').removeClass('hidden').fadeIn(500);
     }, 1000);
     
 }
@@ -148,16 +137,9 @@ function displayPopularMovies(popResponse, popCredits) {
                 `)
                    
             }
-            // for (let i = 0; i < popCredits.cast.length; i++) {
-            //     if (i <= 4) {
-            //         $('.pop-cast-list').append(`
-            //             <li class="pop-cast">${popCredits.cast[i].name} as ${popCredits.cast[i].character}</li>
-            //         `)
-            //     }
-            // }
         };
     }, 1000);
-    // $('.popular-container').animate({scrollTop: 0}, 'slow');
+    $('.popular-container').scrollTop(0);
 }
 
 function handleFunctions() {
