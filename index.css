@@ -20,6 +20,8 @@ body {
 #header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
     align-content: center;
     padding: 10px 30px;
     width: 100%;
@@ -31,6 +33,11 @@ body {
 
 #header h2 {
     text-shadow: 15px 12px 14px #000;
+}
+
+#header img {
+    width: 45px;
+    height: 38px;
 }
 
 .enter-site-section-container {
@@ -60,7 +67,7 @@ body {
 }
 
 ::placeholder {
-    color: #000;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .hidden {
@@ -96,12 +103,6 @@ body {
     line-height: 1.4;
 }
 
-.response-container p,
-.popular-container p {
-    padding: 0 20px;
-    text-align: justify;
-}
-
 .popular-container h2 {
     font-family: 'Orienta', sans-serif;
     text-align: center;
@@ -112,9 +113,19 @@ body {
     text-align: center;
 }
 
+.poster-and-summary-container .poster-and-summary {
+    padding: 0 20px;
+}
+
 .poster-and-summary {
     text-align: center;
     font-family: 'Orienta', sans-serif;
+    text-align: left;
+}
+
+.poster-and-summary p {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 20px;
 }
 
 .poster {
@@ -133,7 +144,7 @@ body {
 .cast,
 .pop-cast {
     list-style: none;
-    padding: 10px 10px;
+    padding: 5px 0;
 }
 
 .movie-trailer iframe {
@@ -199,6 +210,10 @@ body {
         margin-bottom: 40px;
     }
 
+    .movie-title {
+        font-size: 28px;
+    }
+
     .poster-and-summary p {
         font-size: 14px;
         text-align: left;
@@ -211,7 +226,7 @@ body {
 
     .poster-and-summary-container .cast {
         text-align: left;
-        padding: 0 20px;
+        padding: 4px 0;
     }
 
     .movie-trailer {
