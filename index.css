@@ -299,6 +299,11 @@ body {
         /* position: fixed; */
     }
 
+    #header img {
+        width: 55px;
+        height: 48px;
+    }
+
     #js-search-movie {
         padding: 20px 50px;
         font-size: 20px;
