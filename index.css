@@ -14,14 +14,23 @@ body {
 
 #header,
 .movie-title {
-    font-family: 'Vast Shadow', cursive;
+    font-family: 'Kaushan Script', cursive;
 }
 
 #header {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding: 10px 30px;
     width: 100%;
     text-align: center;
-    background: #93291E;
+    background: #fff;
+    color: #000;
     box-shadow: 0px 5px 15px #000;
+}
+
+#header h2 {
+    text-shadow: 15px 12px 14px #000;
 }
 
 .enter-site-section-container {
@@ -50,6 +59,10 @@ body {
     font-size: 16px;
 }
 
+::placeholder {
+    color: #000;
+}
+
 .hidden {
     display: none;
 }
@@ -59,18 +72,19 @@ body {
     margin-top: 20px;
     border: 1px solid #fff;
     border-radius: 4px;
-    background: transparent;
+    background: #93291E;
     color: white;
-    box-shadow: 2px 2px 5px #fff;
+    box-shadow: 2px 2px 5px #000;
     font-size: 20px;
 }
 
 #enter:hover,
 .submit-btn:hover {
     border: 2px solid white;
-    box-shadow: 5px 5px 7px #fff;
+    box-shadow: 5px 5px 7px #000;
     transition: all 1s;
     cursor: pointer;
+    background: transparent;
 }
 
 .response-container,
@@ -132,7 +146,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 10px 0;
+    padding: 70px 10px;
 }
 
 .popular-movies-btn,
@@ -217,14 +231,7 @@ body {
     body {
         background: url('img/theatre.jpg') no-repeat;
         background-size: cover;
-        /* position: fixed; */
     }
-
-    /* .poster-and-summary-container {
-        display: flex;
-        padding: 0 15px;
-        margin-bottom: 40px;
-    } */
 
     .poster-and-summary {
         display: flex;
@@ -239,16 +246,26 @@ body {
     }
 
     #header {
-        background: #93291E;
+        background: #fff;
+        color: #000;
+        text-shadow: 15px 12px 0px whitesmoke;
         width: 100%;
         text-align: center;
+    }
+
+    #header h1 {
+        font-size: 50px;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     #enter .submit-btn {
         margin-top: 20px;
         border: 2px solid #fff;
-        background: #93291E;
-        color: white;
+        background: #fff;
+        color: #000;
         box-shadow: 2px 2px 5px #000;
         font-size: 20px;
     }
@@ -306,8 +323,8 @@ body {
         padding: 15px 50px;
         margin-top: 20px;
         border: 2px solid #fff;
-        background: transparent;
-        color: white;
+        background: #fff;
+        color: #000;
         box-shadow: 2px 2px 5px #000;
         font-size: 20px;
     }
