@@ -5,12 +5,16 @@ let movieId;
 let popularId;
 let trailer;
 
+// this button takes you to the form where the user can enter their movie selection in the input
+
 function enterSite() {
     $('#enter').on('click', function() {
         $('.main-contain').addClass('hidden');
         $('.form').removeClass('hidden');
     });
 }
+
+// fetches the movie database API with the users input as its value
 
 function callMovieAPI(inputVal) {
     
@@ -35,6 +39,8 @@ function callMovieAPI(inputVal) {
 
 }
 
+// returns a list of current popular movies based on user voting
+
 function getPopularMovies() {
     fetch('https://api.themoviedb.org/3/movie/popular?api_key=05f3d0d627b6f6d55cb015ffb7a0a0c1&language=en-US&page=1')
     .then(response => response.json())
@@ -49,6 +55,8 @@ function getPopularMovies() {
     .catch(error => console.log(error))
 }
 
+// submits the form and calls the callMovieAPI function
+
 function submitForm() {
     $('#js-form').submit(function(event) {
         event.preventDefault();
@@ -61,11 +69,15 @@ function submitForm() {
     });
 }
 
+// displays the current popular movies once the button is clicked
+
 function popularBtn() {
     $('.popular-movies-btn').on('click', function() {
         getPopularMovies();
     });
 }
+
+// allows the user to begin a new search and is taken back to the initial form
 
 function newSearch() {
     $('.new-search').on('click', function() {
@@ -75,6 +87,8 @@ function newSearch() {
         $('#js-search-movie').val('');
     });
 }
+
+// displays the results of the movie query 
 
 function displayResults(newResponse, creditResponse, trailer) {
     $('.response-container').empty();
@@ -111,6 +125,8 @@ function displayResults(newResponse, creditResponse, trailer) {
     
 }
 
+// displays the results of the current popular movies 
+
 function displayPopularMovies(popResponse, popCredits) {
     setTimeout(function() {
         $('.popular-container').html(`
@@ -142,11 +158,15 @@ function displayPopularMovies(popResponse, popCredits) {
     $('.popular-container').scrollTop(0);
 }
 
+// handles all associated functions
+
 function handleFunctions() {
     enterSite();
     submitForm();
     popularBtn();
     newSearch();
 }
+
+// calls handleFuntions function once the document has loaded
 
 $(handleFunctions);
