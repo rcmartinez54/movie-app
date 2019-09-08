@@ -23,7 +23,7 @@ function callMovieAPI(inputVal) {
         .then(responseObject => {
             let sourceKey = responseObject.results[0].key;
             let videoUrl = 'https://www.youtube.com/embed/';
-            trailer = `${videoUrl}${sourceKey}?rel=0&html5=1`;
+            trailer = `${videoUrl}${sourceKey}?cc_load_policy=1`;
             fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=05f3d0d627b6f6d55cb015ffb7a0a0c1`)
             .then(response => response.json())
             .then(creditResponse => {
