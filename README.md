@@ -30,7 +30,7 @@ Popular movies results:
 
 ## Technologies
 
-HTML
-CSS
-JavaScript
+HTML /
+CSS /
+JavaScript /
 jQuery
