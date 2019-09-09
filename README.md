@@ -14,7 +14,7 @@ https://rcmartinez54.github.io/movie-app/
 
 initial search form: 
 
-![form](img/)
+![form](img/initial-form.png)
 
 Initial results:
 
