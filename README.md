@@ -27,3 +27,10 @@ Trailer results:
 Popular movies results:
 
 ![list of current popular movies](img/popular-search.png)
+
+## Technologies
+
+HTML
+CSS
+JavaScript
+jQuery
