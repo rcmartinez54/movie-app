@@ -14,4 +14,4 @@ https://rcmartinez54.github.io/movie-app/
 
 initial search form: 
 
-![movie search from] (movie-app/img/initial-form.png)
+![movie search from] (img/movie-ticket.png)
