@@ -14,8 +14,16 @@ https://rcmartinez54.github.io/movie-app/
 
 initial search form: 
 
-![form](img/intial-form.png)
+![form](img/)
 
-initial results:
+Initial results:
 
-![results](img/main-payload.png)
+![initial-results](img/main-payload.png)
+
+Trailer results: 
+
+![trailer results](img/trailer.png)
+
+Popular movies results:
+
+![list of current popular movies](img/popular-search.png)
