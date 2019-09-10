@@ -63,11 +63,9 @@ function getPopularMovies() {
         .then(popCredits => {
             setTimeout(function() {
                 displayPopularMovies(popResponse, popCredits);
-                
                 $('.popular-movies-btn-container').append(`
                     <p class="pop-alert">Scroll down</p>
                 `)
-
             }, 300);
         })
     })
