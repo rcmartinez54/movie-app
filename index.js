@@ -21,22 +21,35 @@ function callMovieAPI(inputVal) {
     fetch (`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${inputVal}`)
     .then(response => response.json())
     .then(newResponse => {
-        movieId = newResponse.results[0].id;
-        fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${key}&language=en-US`)
-        .then(response => response.json())
-        .then(responseObject => {
-            let sourceKey = responseObject.results[0].key;
-            let videoUrl = 'https://www.youtube.com/embed/';
-            trailer = `${videoUrl}${sourceKey}?cc_load_policy=1`;
-            fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=05f3d0d627b6f6d55cb015ffb7a0a0c1`)
+        console.log(newResponse);
+        if (newResponse.total_results != 0 && newResponse.results[0].poster_path != null) {
+            $('#enter-site').addClass('hidden');
+            setTimeout(function() {
+                $('.error').addClass('hidden');
+                $('.popular-movies-btn, .new-search').removeClass('hidden');
+            }, 1800);
+            movieId = newResponse.results[0].id;
+            fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${key}&language=en-US`)
             .then(response => response.json())
-            .then(creditResponse => {
-                displayResults(newResponse, creditResponse, trailer);
-            })
+            .then(responseObject => {
+                let sourceKey = responseObject.results[0].key;
+                let videoUrl = 'https://www.youtube.com/embed/';
+                trailer = `${videoUrl}${sourceKey}?cc_load_policy=1`;
+                fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=05f3d0d627b6f6d55cb015ffb7a0a0c1`)
+                .then(response => response.json())
+                .then(creditResponse => {
+                    displayResults(newResponse, creditResponse, trailer);
+                })
         })
         .catch(error => console.log(error))
+        } else {
+            $('#js-form').append(`
+                <p class="error">Whoops! Looks like we couldn't find what you are looking for.  Please enter something else.</p>
+            `)
+            $('#js-search-movie').val('');
+        }   
+        
     })
-
 }
 
 // returns a list of current popular movies based on user voting
@@ -62,10 +75,7 @@ function submitForm() {
         event.preventDefault();
         let inputVal = $('#js-search-movie').val();
         callMovieAPI(inputVal);
-        $('#enter-site').addClass('hidden');
-        setTimeout(function() {
-            $('.popular-movies-btn, .new-search').removeClass('hidden');
-        }, 1800);
+        
     });
 }
 
