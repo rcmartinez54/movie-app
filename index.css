@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     height: 100vh;
     background: url('img/app-background.jpg') no-repeat;
@@ -376,4 +380,26 @@ body {
     .movie-trailer iframe {
         height: 630px;
     }
+}
+
+.error {
+    font-size: 20px;
+    padding: 10px 5px;
+    border-radius: 5px;
+    background: #bd0909;
+    position: relative;
+}
+
+.error::before {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #bd0909 transparent;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    content: '';
+    display: block;
 }
