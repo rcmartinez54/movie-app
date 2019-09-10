@@ -21,7 +21,6 @@ function callMovieAPI(inputVal) {
     fetch (`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${inputVal}`)
     .then(response => response.json())
     .then(newResponse => {
-        console.log(newResponse);
         if (newResponse.total_results != 0 && newResponse.results[0].poster_path != null) {
             $('#enter-site').addClass('hidden');
             setTimeout(function() {
@@ -62,7 +61,14 @@ function getPopularMovies() {
         fetch(`https://api.themoviedb.org/3/movie/${popularId}/credits?api_key=05f3d0d627b6f6d55cb015ffb7a0a0c1`)
         .then(response => response.json())
         .then(popCredits => {
-            displayPopularMovies(popResponse, popCredits);
+            setTimeout(function() {
+                displayPopularMovies(popResponse, popCredits);
+                
+                $('.popular-movies-btn-container').append(`
+                    <p class="pop-alert">Scroll down</p>
+                `)
+
+            }, 300);
         })
     })
     .catch(error => console.log(error))
@@ -84,6 +90,7 @@ function submitForm() {
 function popularBtn() {
     $('.popular-movies-btn').on('click', function() {
         getPopularMovies();
+       
     });
 }
 
@@ -94,6 +101,7 @@ function newSearch() {
         $('.response-container, .popular-container').empty();
         $('#enter-site').removeClass('hidden');
         $('.popular-movies-btn, .new-search').addClass('hidden');
+        $('.pop-alert').addClass('hidden');
         $('#js-search-movie').val('');
     });
 }
@@ -164,8 +172,7 @@ function displayPopularMovies(popResponse, popCredits) {
                    
             }
         };
-    }, 1000);
-    $('.popular-container').scrollTop(0);
+    }, 300);
 }
 
 // handles all associated functions
