@@ -7,12 +7,12 @@ let trailer;
 
 // this button takes you to the form where the user can enter their movie selection in the input
 
-function enterSite() {
-    $('#enter').on('click', function() {
-        $('.main-contain').addClass('hidden');
-        $('.form').removeClass('hidden');
-    });
-}
+// function enterSite() {
+//     $('#enter').on('click', function() {
+//         $('.main-contain').addClass('hidden');
+//         $('.form').removeClass('hidden');
+//     });
+// }
 
 // fetches the movie database API with the users input as its value
 
@@ -25,7 +25,7 @@ function callMovieAPI(inputVal) {
             $('#enter-site').addClass('hidden');
             setTimeout(function() {
                 $('.error').addClass('hidden');
-                $('.popular-movies-btn, .new-search').removeClass('hidden');
+                $('.new-search-p, .new-search').removeClass('hidden');
             }, 1800);
             movieId = newResponse.results[0].id;
             fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${key}&language=en-US`)
@@ -63,9 +63,9 @@ function getPopularMovies() {
         .then(popCredits => {
             setTimeout(function() {
                 displayPopularMovies(popResponse, popCredits);
-                $('.popular-movies-btn-container').append(`
-                    <p class="pop-alert">Scroll down</p>
-                `)
+                // $('.popular-movies-btn-container').append(`
+                //     <p class="pop-alert">Scroll down</p>
+                // `)
             }, 300);
         })
     })
@@ -79,18 +79,20 @@ function submitForm() {
         event.preventDefault();
         let inputVal = $('#js-search-movie').val();
         callMovieAPI(inputVal);
-        
+        setTimeout(function(){
+            getPopularMovies();
+        }, 1000);
     });
 }
 
 // displays the current popular movies once the button is clicked
 
-function popularBtn() {
-    $('.popular-movies-btn').on('click', function() {
-        getPopularMovies();
+// function popularBtn() {
+//     $('.popular-movies-btn').on('click', function() {
+//         getPopularMovies();
        
-    });
-}
+//     });
+// }
 
 // allows the user to begin a new search and is taken back to the initial form
 
@@ -98,7 +100,8 @@ function newSearch() {
     $('.new-search').on('click', function() {
         $('.response-container, .popular-container').empty();
         $('#enter-site').removeClass('hidden');
-        $('.popular-movies-btn, .new-search').addClass('hidden');
+        // $('.popular-movies-btn-container').addClass('hidden');
+        $('.new-search-p, .new-search').addClass('hidden');
         $('.pop-alert').addClass('hidden');
         $('#js-search-movie').val('');
     });
@@ -176,9 +179,9 @@ function displayPopularMovies(popResponse, popCredits) {
 // handles all associated functions
 
 function handleFunctions() {
-    enterSite();
+    // enterSite();
     submitForm();
-    popularBtn();
+    // popularBtn();
     newSearch();
 }
 
