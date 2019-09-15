@@ -5,15 +5,6 @@ let movieId;
 let popularId;
 let trailer;
 
-// this button takes you to the form where the user can enter their movie selection in the input
-
-// function enterSite() {
-//     $('#enter').on('click', function() {
-//         $('.main-contain').addClass('hidden');
-//         $('.form').removeClass('hidden');
-//     });
-// }
-
 // fetches the movie database API with the users input as its value
 
 function callMovieAPI(inputVal) {
@@ -84,15 +75,6 @@ function submitForm() {
         }, 1000);
     });
 }
-
-// displays the current popular movies once the button is clicked
-
-// function popularBtn() {
-//     $('.popular-movies-btn').on('click', function() {
-//         getPopularMovies();
-       
-//     });
-// }
 
 // allows the user to begin a new search and is taken back to the initial form
 
@@ -179,9 +161,7 @@ function displayPopularMovies(popResponse, popCredits) {
 // handles all associated functions
 
 function handleFunctions() {
-    // enterSite();
     submitForm();
-    // popularBtn();
     newSearch();
 }
 
