@@ -82,6 +82,15 @@ body {
     color: rgba(0, 0, 0, 0.5);
 }
 
+.intro {
+    font-family: 'Orienta', sans-serif;
+    text-align: center;
+    line-height: 2;
+    padding: 30px 10px;
+    background: rgba(0,0,0,0.5);
+    box-shadow: 7px 10px 12px #000;
+}
+
 .hidden {
     display: none;
 }
@@ -211,19 +220,6 @@ body {
 .movie-title h3 {
     text-align: center;
 }
-
-/* #footer {
-    width: 100%;
-    background: #fff;
-    color: #000;
-    border-top: 2px solid #000;
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-evenly;
-    padding: 20px;
-} */
 
 @media screen and (min-width: 600px) {
     .poster-and-summary-container {
